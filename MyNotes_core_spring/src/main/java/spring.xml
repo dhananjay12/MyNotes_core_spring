@@ -9,6 +9,21 @@
 	
 	
 	<bean id="employee" class="mynotes.corespring.test.Employee">
+	<constructor-arg value="John" type="String"></constructor-arg>
+	<constructor-arg value="20" type="int"></constructor-arg>
+	<property name="homeAddress" ref="homeAddress"></property>
+	<property name="officeAddress" ref="officeAddress"></property>	
+	</bean>
+	
+	<bean id="homeAddress" class="mynotes.corespring.test.Address">
+	<property name="street" value="Street1"></property>
+	<property name="city" value="City1"></property>
+	<property name="pincode" value="123456"></property>
+	</bean>
+	<bean id="officeAddress" class="mynotes.corespring.test.Address">
+	<property name="street" value="Street2"></property>
+	<property name="city" value="City2"></property>
+	<property name="pincode" value="654321"></property>
 	</bean>
 	
 

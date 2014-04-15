@@ -8,7 +8,7 @@ public class App {
 	public static void main(String[] args) {
 		ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
 		Employee employee=(Employee) context.getBean("employee");
-		employee.getDetails();
+		System.out.println(employee);
 	}
 
 }
