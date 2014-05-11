@@ -1,19 +1,12 @@
 package mynotes.corespring.test;
 
-import java.util.Iterator;
-import java.util.List;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 
-public class Employee {
+public class Employee implements InitializingBean, DisposableBean {
 
 	private int id;
 	private String name;
-	private Address homeAddress;
-	private Address officeAddress;
-	private List<String> programmingLaguages;
-
-	public Employee() {
-
-	}
 
 	public Employee(int id, String name) {
 		this.id = id;
@@ -22,19 +15,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		String allLanguages = null;
-		
-		for (String language : this.programmingLaguages) {
-			if(allLanguages==null){
-			allLanguages=language+";";
-			}else{
-			allLanguages=allLanguages+language+";";
-			}
-		}
-		
-		return ("Id=>" + this.id + " Name=>" + this.name + "\nhomeAddress=>"
-				+ this.homeAddress + "\nofficeAddress=>" + this.officeAddress
-				+ " \nAllLanguage=>"+allLanguages);
+		return ("Id=>" + this.id + " Name=>" + this.name);
 	}
 
 	public int getId() {
@@ -53,28 +34,21 @@ public class Employee {
 		this.name = name;
 	}
 
-	public Address getHomeAddress() {
-		return homeAddress;
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("afterPropertiesSet called after bean initialized");
 	}
 
-	public void setHomeAddress(Address homeAddress) {
-		this.homeAddress = homeAddress;
+	public void destroy() throws Exception {
+		System.out.println("destroy called before bean get destroyed");
+
 	}
 
-	public Address getOfficeAddress() {
-		return officeAddress;
+	public void myCustomInit() {
+		System.out.println("myCustomInit called after bean initialized");
 	}
 
-	public void setOfficeAddress(Address officeAddress) {
-		this.officeAddress = officeAddress;
-	}
-
-	public List<String> getProgrammingLaguages() {
-		return programmingLaguages;
-	}
-
-	public void setProgrammingLaguages(List<String> programmingLaguages) {
-		this.programmingLaguages = programmingLaguages;
+	public void myCustomDestroy() {
+		System.out.println("myCustomDestroy called before bean get destroyed");
 	}
 
 }

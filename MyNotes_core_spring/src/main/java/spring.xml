@@ -7,31 +7,11 @@
 
 
 
-	<bean id="employee" class="mynotes.corespring.test.Employee" autowire="byName">
+	<bean id="employee" class="mynotes.corespring.test.Employee" 
+	 		init-method="myCustomInit" destroy-method="myCustomDestroy">
 		<constructor-arg value="John" type="String"></constructor-arg>
 		<constructor-arg value="20" type="int"></constructor-arg>
-		<property name="homeAddress">
-			<bean class="mynotes.corespring.test.Address">
-				<property name="street" value="Street1"></property>
-				<property name="city" value="City1"></property>
-				<property name="pincode" value="123456"></property>
-			</bean>
-		</property>
-		<property name="programmingLaguages">
-		<list>
-		<value>Java</value>
-		<value>PL/SQL</value>
-		<value>JavaScript</value>
-		</list>
-		</property>
 	</bean>
-
-	<bean id="officeAddress" class="mynotes.corespring.test.Address" name="officeAddress-name">
-		<property name="street" value="Street2"></property>
-		<property name="city" value="City2"></property>
-		<property name="pincode" value="654321"></property>
-	</bean>
-	<alias name="officeAddress" alias="officeAddress-alias"/>
 
 
 </beans>
