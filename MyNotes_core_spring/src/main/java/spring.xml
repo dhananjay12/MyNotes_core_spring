@@ -1,30 +1,37 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 							http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 							http://www.springframework.org/schema/context
 							http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	
-	
-	<bean id="employee" class="mynotes.corespring.test.Employee">
-	<constructor-arg value="John" type="String"></constructor-arg>
-	<constructor-arg value="20" type="int"></constructor-arg>
-	<property name="homeAddress" ref="homeAddress"></property>
-	<property name="officeAddress" ref="officeAddress"></property>	
+
+
+	<bean id="employee" class="mynotes.corespring.test.Employee" autowire="byName">
+		<constructor-arg value="John" type="String"></constructor-arg>
+		<constructor-arg value="20" type="int"></constructor-arg>
+		<property name="homeAddress">
+			<bean class="mynotes.corespring.test.Address">
+				<property name="street" value="Street1"></property>
+				<property name="city" value="City1"></property>
+				<property name="pincode" value="123456"></property>
+			</bean>
+		</property>
+		<property name="programmingLaguages">
+		<list>
+		<value>Java</value>
+		<value>PL/SQL</value>
+		<value>JavaScript</value>
+		</list>
+		</property>
 	</bean>
-	
-	<bean id="homeAddress" class="mynotes.corespring.test.Address">
-	<property name="street" value="Street1"></property>
-	<property name="city" value="City1"></property>
-	<property name="pincode" value="123456"></property>
+
+	<bean id="officeAddress" class="mynotes.corespring.test.Address" name="officeAddress-name">
+		<property name="street" value="Street2"></property>
+		<property name="city" value="City2"></property>
+		<property name="pincode" value="654321"></property>
 	</bean>
-	<bean id="officeAddress" class="mynotes.corespring.test.Address">
-	<property name="street" value="Street2"></property>
-	<property name="city" value="City2"></property>
-	<property name="pincode" value="654321"></property>
-	</bean>
-	
+	<alias name="officeAddress" alias="officeAddress-alias"/>
+
 
 </beans>
