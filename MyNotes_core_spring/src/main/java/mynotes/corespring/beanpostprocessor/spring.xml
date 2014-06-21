@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<bean id="employee" class="mynotes.corespring.beanpostprocessor.Employee">
+		<constructor-arg value="John" type="String"></constructor-arg>
+		<constructor-arg value="20" type="int"></constructor-arg>
+		<property name="homeAddress" ref="homeAddress"></property>
+	</bean>
+	<bean id="homeAddress" class="mynotes.corespring.beanpostprocessor.Address">
+		<property name="street" value="${homeaddress.street}"></property>
+		<property name="city" value="${homeaddress.city}"></property>
+		<property name="pincode" value="${homeaddress.pincode}"></property>
+	</bean>
+	<bean
+		class="mynotes.corespring.beanpostprocessor.DisplayNameBeanPostProcessor" />
+
+	<bean class="mynotes.corespring.beanpostprocessor.MyBeanFactoryPostProcessor"></bean>
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations"
+			value="classpath:mynotes/corespring/beanpostprocessor/test.properties" />
+	</bean>
+
+</beans>
