@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	<bean id="parentEmployee" class="mynotes.corespring.contextaware.Employee" abstract="true">
+	<property name="officeAddress" ref="office"></property>
+	</bean>
+	
+	<bean id="employee1" class="mynotes.corespring.contextaware.Employee" parent="parentEmployee">
+		<constructor-arg value="John" type="String"></constructor-arg>
+		<constructor-arg value="20" type="int"></constructor-arg>
+		<property name="homeAddress" ref="homeAddress"></property>
+	</bean>
+	<bean id="employee2" class="mynotes.corespring.contextaware.Employee">
+		<constructor-arg value="John" type="String"></constructor-arg>
+		<constructor-arg value="20" type="int"></constructor-arg>
+		<property name="homeAddress" ref="homeAddress"></property>
+	</bean>
+	<bean id="homeAddress" class="mynotes.corespring.contextaware.Address">
+		<property name="street" value="Street 1"></property>
+		<property name="city" value="City1 "></property>
+		<property name="pincode" value="123456"></property>
+	</bean>
+	
+	<bean id="office" class="mynotes.corespring.contextaware.Address">
+		<qualifier value="officeQualifier"></qualifier>
+		<property name="street" value="Street 123"></property>
+		<property name="city" value="City123 "></property>
+		<property name="pincode" value="9877654"></property>
+	</bean>
+	
+
+</beans>
